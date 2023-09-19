@@ -1,0 +1,87 @@
+/****** Script do comando SelectTopNRows de SSMS  ******/
+
+--1
+SELECT 
+Nome, Ano
+FROM Filmes
+
+--2
+SELECT 
+Nome, Ano, Duracao
+FROM Filmes
+order by Ano
+
+--3
+SELECT 
+Nome, Ano, Duracao
+FROM Filmes
+where Nome  = 'de volta para o futuro'
+
+--4
+SELECT 
+Nome, Ano, Duracao
+FROM Filmes
+where Ano  = 1997
+
+--5
+SELECT 
+Nome, Ano, Duracao
+FROM Filmes
+where Ano  > 2000
+
+
+--6
+SELECT 
+Nome, Ano, Duracao
+FROM Filmes
+where Duracao  > 100 and Duracao < 150
+order by Duracao
+
+
+--7
+SELECT 
+Ano, COUNT(*) as Quantidade
+FROM Filmes
+group by Ano
+order by Quantidade desc
+
+
+--8
+SELECT *
+FROM Atores
+Where Genero = 'M'
+
+
+--9
+SELECT *
+FROM Atores
+Where Genero = 'F'
+order by PrimeiroNome
+
+
+--10
+SELECT 
+Filmes.Nome, 
+Generos.Genero
+FROM Filmes
+inner join FilmesGenero on FilmesGenero.IdFilme = Filmes.Id
+inner join Generos on Generos.Id = FilmesGenero.IdGenero
+
+--11
+SELECT 
+Filmes.Nome, 
+Generos.Genero
+FROM Filmes
+inner join FilmesGenero on FilmesGenero.IdFilme = Filmes.Id
+inner join Generos on Generos.Id = FilmesGenero.IdGenero
+where Generos.Genero = 'Mistério'
+
+
+--12
+SELECT 
+Filmes.Nome,
+Atores.PrimeiroNome, Atores.UltimoNome,
+ElencoFilme.Papel
+FROM Filmes
+inner join ElencoFilme on ElencoFilme.IdFilme = Filmes.Id
+inner join Atores on Atores.Id = ElencoFilme.IdAtor
